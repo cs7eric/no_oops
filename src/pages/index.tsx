@@ -8,7 +8,8 @@ import {IoCodeSlashOutline} from "react-icons/io5";
 import {GithubIcon} from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import BlurText from "@/components/text/blur-text.tsx";
-
+import LogoIcon from '/public/logo/favicon.svg'
+import {Avatar} from "@heroui/avatar";
 // 动画配置
 const container = {
   hidden: {opacity: 0},
@@ -55,7 +56,7 @@ export default function IndexPage() {
               direction="top"
               onAnimationComplete={() => {
               }}
-              className="text-4xl font-bold mb-8"
+              className="text-2xl sm:text-3xl lg:text-4xl  font-bold mb-8"
             />
           </div>
         </motion.div>
@@ -79,33 +80,6 @@ export default function IndexPage() {
             </video>
           </div>
         </motion.div>
-
-        {/* 介绍部分 */}
-        <motion.div
-          className="intro flex flex-col items-center space-y-7"
-          variants={item}
-        >
-          <div className="career font-bold text-3xl">
-            Java Developer 👨🏻‍💻
-          </div>
-          <div className="detail-intro flex flex-col items-center">
-            <span>Welcome to my personal page!</span>
-            <span>Just a developer who likes to build something i wanna do</span>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className={'program-stack'}
-          variants={item}
-        >
-          <div className="backend grid sm:grid-cols-5">
-            <div className="tech-stack-item h-10 w-10 rounded-full p-1 border"></div>
-          </div>
-          <div className="frontend"></div>
-          <div className="devops"></div>
-
-        </motion.div>
-
         {/* 按钮部分 */}
         <motion.div
           className="flex gap-3"
@@ -132,6 +106,92 @@ export default function IndexPage() {
             GitHub
           </Link>
         </motion.div>
+
+        {/* 介绍部分 */}
+        <motion.div
+          className="intro flex flex-col items-center space-y-7 mb-10"
+          variants={item}
+        >
+          <div className="career mb-6 flex flex-col items-center font-bold text-2xl sm:3xl lg:text-4xl ">
+            <span>Java Developer 👨🏻‍💻</span>
+            <span>Weak Full-Stack Developer🧐</span>
+          </div>
+          <div className="detail-intro flex flex-col items-center text-xs sm:text-xl lg:text-2xl">
+            <span>Welcome to my personal page!</span>
+            <span>Just a developer who likes to build something i wanna do</span>
+          </div>
+        </motion.div>
+
+
+        <motion.div
+          className={'apps'}
+          variants={item}
+        >
+          <div className="backend grid grid-cols-5 gap-3 sm:gap-6 place-items-center [&>*]:size-8 md:[&>*]:size-10">
+            <div className="rounded-full">
+              <img src="/icons/GitHub.png" className={'dark:invert '} alt=""/>
+            </div>
+            <div className="rounded-full">
+              <img src="/icons/mail4.png" className={'dark:invert '} alt=""/>
+
+            </div>
+            <div className="rounded-full">
+              <img src="/icons/csdn.png" alt=""/>
+            </div>
+            <div className="rounded-full">
+              <img src="/icons/blog.png" alt=""/>
+            </div>
+            <div className="rounded-full">
+              <img src="/icons/GitHub.png" className={'dark:invert '} alt=""/>
+            </div>
+
+          </div>
+
+        </motion.div>
+
+
+
+        <motion.div
+          className={'about-me'}
+          variants={item}
+        >
+          <div className="about-area grid grid-cols-1 sm:grid-cols-4 md:max-w-4xl gap-2 sm:gap-4">
+            <div className="sm:col-span-3 space-y-3 ">
+              <h3 className={'title font-bold text-xl md:text-3xl text-center sm:text-left'}>
+                About Me
+              </h3>
+              <p>Hello, I'm cccs7/cs7eric and my Chinese name is 陈帅旗. I'm a <strong>Java Developer</strong>,
+                and<strong> Weaker Full-Stack Engineers </strong> based in Zhengzhou, China</p>
+              <p>As a technologies enthusiast, I am highly passionate about building full-stack web applications.
+                And I love learning new technologies, especially elegant code architectures and design patterns.
+                I hope to leverage my technical skills to build valuable apps that can make a difference in people's lives.
+              </p>
+              <p>Outside of programming, I am also a reader、cyclist and runner, I enjoy doing these. And I will writing something about my favorite. So welcome to subscribe my social media. Lastly, I wanna say <strong>Make programming great again!</strong> </p>
+              <p>I'm cccs7/cs7eric - no_oops@icloud.com</p>
+
+            </div>
+            <div className="hidden sm:block sm:col-span-1  hover:scale-105 transition-transform duration-250">
+              <img src="/bike.jpg" className={'rounded-xl'} alt=""/>
+            </div>
+            <div className={'cols'}></div>
+          </div>
+
+        </motion.div>
+
+        <motion.div
+          className={'program-stack'}
+          variants={item}
+        >
+          {/*<div className="backend grid sm:grid-cols-5">*/}
+          {/*  <div className="tech-stack-item h-10 w-10 rounded-full p-1 border"></div>*/}
+          {/*</div>*/}
+          {/*<div className="frontend"></div>*/}
+          {/*<div className="devops"></div>*/}
+
+        </motion.div>
+
+
+
 
         {/* 底部代码片段 */}
         <motion.div
