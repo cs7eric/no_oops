@@ -75,7 +75,7 @@ export default function IndexPage() {
               disablePictureInPicture
               style={{width: '50%', height: '50%', objectFit: 'contain'}}
             >
-              <source src="/public/aniemoji.mp4" type="video/mp4"/>
+              <source src="/aniemoji.mp4" type="video/mp4"/>
               您的浏览器不支持HTML5视频
             </video>
           </div>
