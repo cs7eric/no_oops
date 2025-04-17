@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite build && vite ",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && git add dist/* ",
     "lint": "eslint -c .eslintrc.json ./src/**/**/*.{ts,tsx} --fix",
     "preview": "vite preview"
   },

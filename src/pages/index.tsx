@@ -8,8 +8,6 @@ import {IoCodeSlashOutline} from "react-icons/io5";
 import {GithubIcon} from "@/components/icons";
 import DefaultLayout from "@/layouts/default";
 import BlurText from "@/components/text/blur-text.tsx";
-import LogoIcon from '/public/logo/favicon.svg'
-import {Avatar} from "@heroui/avatar";
 // 动画配置
 const container = {
   hidden: {opacity: 0},

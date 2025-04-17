@@ -9,21 +9,21 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Pricing",
-      href: "/pricing",
+      label: "Project",
+      href: "/project",
     },
     {
       label: "Blog",
       href: "/blog",
     },
     {
+      label: "Resume",
+      href: "/resume",
+    },
+    {
       label: "About",
       href: "/about",
-    },
+    }
   ],
   navMenuItems: [
     {
@@ -31,39 +31,26 @@ export const siteConfig = {
       href: "/profile",
     },
     {
-      label: "Dashboard",
-      href: "/dashboard",
+      label: "Blog",
+      href: "/blog",
     },
     {
       label: "Projects",
       href: "/projects",
     },
     {
-      label: "Team",
-      href: "/team",
-    },
-    {
-      label: "Calendar",
-      href: "/calendar",
+      label: "Resume",
+      href: "/resume",
     },
     {
       label: "Settings",
       href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-    },
-    {
-      label: "Logout",
-      href: "/logout",
-    },
+    }
   ],
   links: {
-    github: "https://github.com/frontio-ai/heroui",
-    twitter: "https://twitter.com/hero_ui",
-    docs: "https://heroui.com",
-    discord: "https://discord.gg/9b6yyZKmH4",
+    github: "https://github.com/cs7eric",
+    twitter: "https://x.com/cs7eric",
+    blog: "https://cs7eric.github.io/",
     sponsor: "https://patreon.com/jrgarciadev",
   },
 };
