@@ -105,22 +105,6 @@ export const siteConfig = {
     {
       label: 'Spring',
       href: '/icons/icons8-java.svg'
-    },
-    {
-      label: 'Spring',
-      href: '/icons/icons8-java.svg'
-    },
-    {
-      label: 'Spring',
-      href: '/icons/icons8-java.svg'
-    },
-    {
-      label: 'Spring',
-      href: '/icons/icons8-java.svg'
-    },
-    {
-      label: 'Spring',
-      href: '/icons/icons8-java.svg'
     }
   ],
   frontendStack: [
@@ -149,36 +133,43 @@ export const siteConfig = {
       href: '/icons/favicon.ico'
     },
     {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
+      label: 'Ant Design',
+      href: '/icons/antd.svg'
     },
     {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
+      label: 'Element Plus',
+      href: '/icons/element-plus.svg'
     },
     {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
+      label: 'Vite',
+      href: '/icons/icons8-vite (1).svg'
     },
     {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
+      label: 'Tailwindcss',
+      href: '/icons/icons8-tailwindcss.svg'
     },
     {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
+      label: 'sass',
+      href: '/icons/sass_.svg'
     },
     {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
-    },
-    {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
-    },
-    {
-      label: 'React',
-      href: '/icons/icons8-react-24.png'
+      label: 'pnpm',
+      href: '/icons/pnpm.svg'
     }
+  ],
+  devopsList: [
+    {
+      label: 'Jenkins',
+      href: '/icons/jenkins.svg'
+    },
+    {
+      label: 'Docker',
+      href: '/icons/Docker.svg'
+    },
+    {
+      label: 'Aliyun',
+      href: '/icons/阿里云官方-中文LOGO.svg'
+    },
+
   ]
 };
