@@ -9,6 +9,10 @@ COPY package*.json ./
 # 【新增这一行】手动安装 pnpm
 RUN npm install -g pnpm
 
+RUN pnpm config set registry https://registry.npmmirror.com
+
+RUN pnpm config set fetch-timeout 600000
+
 # 2. 现在可以使用 pnpm 安装依赖了
 RUN pnpm install
 
