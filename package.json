@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node scripts/generateBlogData.js && vite build && vite ",
     "dev:watch": "concurrently \"node scripts/watchBlogData.js\" \"vite build && vite\"",
-    "build": "node scripts/generateBlogData.js && tsc && vite build && git add dist/* ",
+    "build": "node scripts/generateBlogData.js && tsc && vite build ",
     "lint": "eslint -c .eslintrc.json ./src/**/**/*.{ts,tsx} --fix",
     "preview": "vite preview",
     "generate-blog-data": "node scripts/generateBlogData.js",
