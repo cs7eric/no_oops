@@ -1,69 +1,59 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS' // 与 Jenkins 中配置的 Node.js 名称一致
-    }
-
     environment {
-        // 可以在这里定义环境变量
-        DEPLOY_PATH = '/usr/local/app/no_oops'
-        NODE_ENV = 'production'
+        // 定义镜像名称
+        IMAGE_NAME = "my-react-app"
+        // 定义容器名称
+        CONTAINER_NAME = "react-prod-container"
+        // 定义对外端口
+        APP_PORT = "8088"
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'git@github.com:cs7eric/no_oops.git'
+                // 拉取 GitHub 代码，分支为 release
+                checkout scmGit(branches: [[name: '*/release']], userRemoteConfigs: [[url: 'https://github.com/YOUR_USER/YOUR_REPO.git']])
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build Docker Image') {
             steps {
-                sh 'npm install'
-            }
-        }
-
-        stage('Build Project') {
-            steps {
-                sh 'npm run build'
+                script {
+                    echo '正在构建 Docker 镜像...'
+                    // 使用 Build 号作为 Tag，方便回滚
+                    sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    sh "docker build -t ${IMAGE_NAME}:latest ."
+                }
             }
         }
 
         stage('Deploy') {
             steps {
-                // 本地部署
-                sh "rm -rf ${DEPLOY_PATH}/*"
-                sh "cp -r dist/* ${DEPLOY_PATH}/"
-
-                // 或者使用 SSH 部署到远程服务器
-                // sshPublisher(
-                //     publishers: [
-                //         sshPublisherDesc(
-                //             configName: 'your-ssh-server',
-                //             transfers: [
-                //                 sshTransfer(
-                //                     sourceFiles: 'dist/**',
-                //                     removePrefix: 'dist',
-                //                     remoteDirectory: '/var/www/vite-project',
-                //                     execCommand: 'chmod -R 755 /var/www/vite-project'
-                //                 )
-                //             ]
-                //         )
-                //     ]
-                // )
+                script {
+                    echo '正在部署...'
+                    // 1. 停止旧容器 (如果存在)
+                    sh "docker ps -q --filter name=${CONTAINER_NAME} | xargs -r docker stop"
+                    // 2. 删除旧容器 (如果存在)
+                    sh "docker ps -aq --filter name=${CONTAINER_NAME} | xargs -r docker rm"
+                    // 3. 运行新容器
+                    sh "docker run -d -p ${APP_PORT}:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}:latest"
+                }
             }
         }
     }
-
+    
     post {
+        always {
+            // 清理工作空间，节省磁盘
+            cleanWs()
+        }
         success {
-            // 构建成功后的操作
-            echo 'Build and deploy completed successfully!'
+            echo '构建并部署成功！'
         }
         failure {
-            // 构建失败后的操作
-            echo 'Build or deploy failed!'
+            echo '构建失败，请检查日志。'
         }
     }
 }
