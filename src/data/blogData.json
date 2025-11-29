@@ -1,0 +1,18 @@
+[
+  {
+    "id": "welcome-to-my-blog",
+    "title": "Welcome to My Blog",
+    "categories": [
+      "General",
+      "Updates"
+    ],
+    "tags": [
+      "welcome",
+      "introduction",
+      "blog"
+    ],
+    "date": "2025-01-15T00:00:00.000Z",
+    "excerpt": "Welcome to my personal blog! This is the first post in my new blog series.\r\n\r\n## What to Expect...",
+    "content": "\r\nWelcome to my personal blog! This is the first post in my new blog series.\r\n\r\n## What to Expect\r\n\r\nIn this blog, I'll be sharing:\r\n- Technical tutorials and guides\r\n- Personal projects and experiences\r\n- Industry insights and observations\r\n- Tips and tricks I've learned along the way\r\n\r\n## Getting Started\r\n\r\nThis blog is built with modern web technologies and hosted on GitHub Pages. I'm excited to share my journey with you!\r\n\r\nStay tuned for more posts coming soon."
+  }
+]
