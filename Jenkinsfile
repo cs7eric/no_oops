@@ -38,7 +38,7 @@ pipeline {
                     // 2. 删除旧容器 (如果存在)
                     sh "docker ps -aq --filter name=${CONTAINER_NAME} | xargs -r docker rm"
                     // 3. 运行新容器
-                    sh "docker run -d -p ${APP_PORT}:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}:latest"
+                    sh "docker run -d -u root -p ${APP_PORT}:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}:latest"
                 }
             }
         }
