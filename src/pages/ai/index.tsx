@@ -1,6 +1,7 @@
 import { title } from "@/components/primitives";
 import { useEffect, useState } from "react";
 import { requestService } from "@/utils/request";
+import { useTranslation } from "@/hooks/useTranslation";
 
 // 定义AI相关的数据类型
 interface AIModel {
@@ -14,6 +15,7 @@ export default function AIPage() {
   const [models, setModels] = useState<AIModel[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   // 示例：获取AI模型列表
   const fetchAIModels = async () => {
@@ -56,9 +58,9 @@ export default function AIPage() {
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
       <div className="inline-block max-w-lg text-center justify-center">
-        <h1 className={title()}>AI</h1>
+        <h1 className={title()}>{t('ai.title')}</h1>
         <p className="mt-4 text-default-600">
-          Welcome to the AI section. Here you can explore AI-related content and projects.
+          {t('ai.description')}
         </p>
         
         <div className="mt-8">

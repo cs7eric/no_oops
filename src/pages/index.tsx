@@ -8,6 +8,8 @@ import {IoCodeSlashOutline} from "react-icons/io5";
 import {GithubIcon} from "@/components/icons";
 
 import BlurText from "@/components/text/blur-text.tsx";
+import { useTranslation } from "@/hooks/useTranslation";
+
 // 动画配置
 const container = {
   hidden: {opacity: 0},
@@ -32,8 +34,9 @@ const item = {
 };
 
 export default function IndexPage() {
+  const { t } = useTranslation();
+  
   return (
-
       <motion.section
         className="flex flex-col items-center justify-center gap-4 py-8 md:py-10"
         initial="hidden"
@@ -97,7 +100,7 @@ export default function IndexPage() {
             className={buttonStyles({variant: "bordered", radius: "full"})}
             href={'https://github.com/cs7eric'}
           >
-            <GithubIcon size={20}/>
+            <GithubIcon className="w-5 h-5" />
             GitHub
           </Link>
         </motion.div>
@@ -111,7 +114,7 @@ export default function IndexPage() {
             <span>Full-Stack Developer🧐</span>
           </div>
           <div className="detail-intro flex flex-col items-center text-xs sm:text-xl lg:text-2xl">
-            <span>Welcome to my personal page!</span>
+            <span>{t('home.description')}</span>
             <span>Just a developer who likes to build something i wanna do</span>
           </div>
         </motion.div>
@@ -152,7 +155,7 @@ export default function IndexPage() {
           <div className="about-area grid grid-cols-1 sm:grid-cols-4 md:max-w-4xl gap-2 sm:gap-4">
             <div className="sm:col-span-3 space-y-3 ">
               <h3 className={'title font-bold text-xl md:text-3xl text-center sm:text-left'}>
-                About Me
+                {t('about.title')}
               </h3>
               <p>Hello, I'm cccs7/cs7eric and my Chinese name is Chen, Shuaiqi. <br/>
                 I'm a <strong>Java Developer</strong>,

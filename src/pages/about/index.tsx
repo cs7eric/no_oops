@@ -7,13 +7,12 @@ import { GithubIcon, TwitterIcon } from "@/components/icons";
 import { skills, experiences } from "@/data/about";
 import ShinyText from "@/components/shiny-text";
 import ReactBitsShinyText from "@/components/react-bits-shiny-text";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function AboutPage() {
-  const [language, setLanguage] = useState<'zh' | 'en'>('zh');
-  
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'zh' ? 'en' : 'zh');
-  };
+  const { language, toggleLanguage } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <section className="min-h-screen py-12 px-4 sm:px-6">

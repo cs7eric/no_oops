@@ -1,7 +1,10 @@
 import {siteConfig} from "@/config/site.ts";
 import SkillStack from "@/components/stack.tsx";
+import { useTranslation } from "@/hooks/useTranslation";
 
 export default function ResumePage() {
+  const { t } = useTranslation();
+  
   return (
 
       <section className="flex flex-col  justify-center gap-4 py-2 md:py-3 px-4 md:px-8">
@@ -18,7 +21,7 @@ export default function ResumePage() {
           <div className="skill-item p-2 rounded-lg dark:bg-neutral-900 bg-default-100">
             <div className="title flex items-center">
               <img src="/logo/favicon.svg" className={'scale-50 size-10'} alt=""/>
-              <h3 className={'font-semibold'}>About my skills / 我所掌握的技能</h3>
+              <h3 className={'font-semibold'}>{t('resume.title')}</h3>
             </div>
             <div
               className="content px-3 my-2 text-xs sm:text-sm space-y-2 [&>.content-item]:bg-white [&>.content-item]:dark:bg-black  [&>.content-item]:rounded-md">

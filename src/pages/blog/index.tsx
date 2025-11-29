@@ -5,12 +5,14 @@ import remarkGfm from 'remark-gfm';
 import { motion } from 'framer-motion';
 import { Button } from '@heroui/button';
 import { getAllBlogPosts, getBlogPostById, BlogPost } from '@/service/blogService';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function BlogPage() {
   const { id } = useParams<{ id?: string }>();
   const navigate = useNavigate();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [currentPost, setCurrentPost] = useState<BlogPost | null>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (id) {
@@ -93,9 +95,9 @@ export default function BlogPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl font-bold mb-4">Blog</h1>
+          <h1 className="text-4xl font-bold mb-4">{t('blog.title')}</h1>
           <p className="text-default-600 max-w-2xl mx-auto">
-            Welcome to my blog. Here you'll find articles about technology, programming, and more.
+            {t('blog.description')}
           </p>
         </motion.div>
 

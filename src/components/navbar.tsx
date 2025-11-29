@@ -21,8 +21,11 @@ import {
   HeartFilledIcon,
 } from "@/components/icons";
 import { Logo } from "@/components/icons";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { FaLanguage } from "react-icons/fa6";
 
 export const Navbar = () => {
+  const { language, toggleLanguage } = useLanguage();
 
   return (
     <HeroUINavbar maxWidth="xl" position="sticky">
@@ -65,6 +68,15 @@ export const Navbar = () => {
             <GithubIcon className="text-default-500" />
           </UILink>
           <ThemeSwitch />
+          <Button
+            isIconOnly
+            aria-label="Toggle language"
+            onClick={toggleLanguage}
+            variant="light"
+            className="data-[hover=true]:bg-transparent data-[pressed=true]:scale-100 data-[pressed=true]:bg-transparent"
+          >
+            <FaLanguage className="w-5 h-5 text-default-500" />
+          </Button>
         </NavbarItem>
         <NavbarItem className="hidden md:flex">
           <Button
@@ -85,6 +97,15 @@ export const Navbar = () => {
           <GithubIcon className="text-default-500" />
         </UILink>
         <ThemeSwitch />
+        <Button
+          isIconOnly
+          aria-label="Toggle language"
+          onClick={toggleLanguage}
+          variant="light"
+          className="data-[hover=true]:bg-transparent data-[pressed=true]:scale-100 data-[pressed=true]:bg-transparent"
+        >
+          <FaLanguage className="w-5 h-5 text-default-500" />
+        </Button>
         <NavbarMenuToggle />
       </NavbarContent>
 

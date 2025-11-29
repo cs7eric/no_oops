@@ -5,6 +5,8 @@ import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { GithubIcon } from "@/components/icons";
 import { projects } from "@/data/project";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { useTranslation } from "@/hooks/useTranslation";
 
 // 技术栈颜色映射
 const getTechColor = (tech: string) => {
@@ -131,11 +133,8 @@ const ElegantGildedText = ({ text, language }: { text: string; language: 'zh' | 
 };
 
 export default function ProjectPage() {
-  const [language, setLanguage] = useState<'zh' | 'en'>('zh');
-  
-  const toggleLanguage = () => {
-    setLanguage(prev => prev === 'zh' ? 'en' : 'zh');
-  };
+  const { language, toggleLanguage } = useLanguage();
+  const { t } = useTranslation();
 
   return (
     <section className="min-h-screen py-12 px-4 sm:px-6">
