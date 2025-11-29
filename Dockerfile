@@ -1,24 +1,28 @@
-# 构建阶段
-FROM node:16 AS builder
-
-# 安装 pnpm 并配置缓存
-RUN npm install -g pnpm
-ENV PNPM_HOME=/pnpm
-ENV PATH="$PNPM_HOME:$PATH"
-RUN pnpm config set store-dir /pnpm/.pnpm-store
+# Multi-stage build
+FROM node:16-alpine as builder
 
 WORKDIR /app
-# 先复制依赖文件以利用 Docker 缓存
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm fetch && pnpm install -r --offline
 
-# 复制源码并构建
+# Copy package files
+COPY package.json pnpm-lock.yaml .npmrc ./
+
+# Install pnpm and dependencies
+RUN npm install -g pnpm
+RUN pnpm fetch
+RUN pnpm install -r --offline
+
+# Copy source code
 COPY . .
+
+# Build the application
 RUN pnpm run build
 
-# 生产阶段
+# Production stage
 FROM nginx:alpine
+
+# Copy built files from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+
 EXPOSE 80
+
 CMD ["nginx", "-g", "daemon off;"]
