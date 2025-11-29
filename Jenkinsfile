@@ -14,7 +14,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // 拉取 GitHub 代码，分支为 release
-                checkout scmGit(branches: [[name: '*/release']], userRemoteConfigs: [[url: 'https://github.com/YOUR_USER/YOUR_REPO.git']])
+                checkout scmGit(branches: [[name: '*/release']], userRemoteConfigs: [[url: 'git@github.com:cs7eric/no_oops.git']])
             }
         }
 
