@@ -17,12 +17,20 @@ export const siteConfig = {
       href: "/blog",
     },
     {
+      label: "Reading",
+      href: "/reading",
+    },
+    {
       label: "Resume",
       href: "/resume",
     },
     {
       label: "About",
       href: "/about",
+    },
+    {
+      label: "AI",
+      href: "/ai",
     }
   ],
   navMenuItems: [
@@ -39,12 +47,20 @@ export const siteConfig = {
       href: "/projects",
     },
     {
+      label: "Reading",
+      href: "/reading ",
+    },
+    {
       label: "Resume",
       href: "/resume",
     },
     {
       label: "Settings",
       href: "/settings",
+    },
+    {
+      label: "AI",
+      href: "/ai",
     }
   ],
   links: {

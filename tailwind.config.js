@@ -1,4 +1,5 @@
 import {heroui} from "@heroui/theme"
+import typography from "@tailwindcss/typography"
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -22,5 +23,5 @@ export default {
     },
   },
   darkMode: "class",
-  plugins: [heroui()],
+  plugins: [heroui(), typography],
 }

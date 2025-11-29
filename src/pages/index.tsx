@@ -6,7 +6,7 @@ import {button as buttonStyles} from "@heroui/theme";
 
 import {IoCodeSlashOutline} from "react-icons/io5";
 import {GithubIcon} from "@/components/icons";
-import DefaultLayout from "@/layouts/default";
+
 import BlurText from "@/components/text/blur-text.tsx";
 // 动画配置
 const container = {
@@ -14,7 +14,7 @@ const container = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // 每个子元素之间的延迟
+      staggerChildren: 0.2, 
     }
   }
 };
@@ -33,7 +33,7 @@ const item = {
 
 export default function IndexPage() {
   return (
-    <DefaultLayout>
+
       <motion.section
         className="flex flex-col items-center justify-center gap-4 py-8 md:py-10"
         initial="hidden"
@@ -41,7 +41,6 @@ export default function IndexPage() {
         viewport={{once: true, margin: "-100px 0px -100px 0px"}}
         variants={container}
       >
-        {/* 欢迎标题部分 */}
         <motion.div
           className="welcome-title"
           variants={item}
@@ -59,7 +58,6 @@ export default function IndexPage() {
           </div>
         </motion.div>
 
-        {/* 头像部分 */}
         <motion.div
           className="avatar"
           variants={item}
@@ -78,7 +76,6 @@ export default function IndexPage() {
             </video>
           </div>
         </motion.div>
-        {/* 按钮部分 */}
         <motion.div
           className="flex gap-3"
           variants={item}
@@ -105,14 +102,13 @@ export default function IndexPage() {
           </Link>
         </motion.div>
 
-        {/* 介绍部分 */}
         <motion.div
           className="intro flex flex-col items-center space-y-7 mb-10"
           variants={item}
         >
           <div className="career mb-6 flex flex-col items-center font-bold text-2xl sm:3xl lg:text-4xl ">
             <span>Java Developer 👨🏻‍💻</span>
-            <span>Weak Full-Stack Developer🧐</span>
+            <span>Full-Stack Developer🧐</span>
           </div>
           <div className="detail-intro flex flex-col items-center text-xs sm:text-xl lg:text-2xl">
             <span>Welcome to my personal page!</span>
@@ -158,8 +154,9 @@ export default function IndexPage() {
               <h3 className={'title font-bold text-xl md:text-3xl text-center sm:text-left'}>
                 About Me
               </h3>
-              <p>Hello, I'm cccs7/cs7eric and my Chinese name is 陈帅旗. I'm a <strong>Java Developer</strong>,
-                and<strong> Weaker Full-Stack Engineers </strong> based in Zhengzhou, China</p>
+              <p>Hello, I'm cccs7/cs7eric and my Chinese name is Chen, Shuaiqi. <br/>
+                I'm a <strong>Java Developer</strong>,
+                and<strong> Full-Stack Engineers </strong> based in Hangzhou, China.</p>
               <p>As a technologies enthusiast, I am highly passionate about building full-stack web applications.
                 And I love learning new technologies, especially elegant code architectures and design patterns.
                 I hope to leverage my technical skills to build valuable apps that can make a difference in people's lives.
@@ -187,10 +184,7 @@ export default function IndexPage() {
           {/*<div className="devops"></div>*/}
 
         </motion.div>
-
-
-
-
+        
         {/* 底部代码片段 */}
         <motion.div
           className="mt-8"
@@ -198,12 +192,12 @@ export default function IndexPage() {
         >
           <Snippet hideCopyButton hideSymbol variant="bordered">
             <span>
-              Get started by editing{" "}
-              <Code color="primary">pages/index.tsx</Code>
+              Get started by reading{" "}
+              <Code color="primary">my pages</Code>
             </span>
           </Snippet>
         </motion.div>
       </motion.section>
-    </DefaultLayout>
+
   );
 }
