@@ -11,10 +11,17 @@ export interface BlogPost {
 }
 
 export const getAllBlogPosts = (): BlogPost[] => {
-  return blogData as unknown as BlogPost[];
+  const posts = blogData as unknown as BlogPost[];
+  // Ensure categories and tags are arrays, even if undefined
+  return posts.map(post => ({
+    ...post,
+    categories: Array.isArray(post.categories) ? post.categories : [],
+    tags: Array.isArray(post.tags) ? post.tags : []
+  }));
 };
 
 export const getBlogPostById = (id: string): BlogPost | null => {
-  const post = (blogData as BlogPost[]).find((post: BlogPost) => post.id === id);
+  const posts = getAllBlogPosts();
+  const post = posts.find((post: BlogPost) => post.id === id);
   return post ? post : null;
 };

@@ -53,12 +53,12 @@ export default function BlogPage() {
             </Button>
             <h1 className="text-3xl font-bold mb-2">{currentPost.title}</h1>
             <div className="flex flex-wrap gap-2 mb-4">
-              {currentPost.categories.map((category, index) => (
+              {currentPost.categories?.map((category, index) => (
                 <span key={index} className="bg-blue-100 text-blue-800 text-sm font-medium px-2.5 py-0.5 rounded">
                   {category}
                 </span>
               ))}
-              {currentPost.tags.map((tag, index) => (
+              {currentPost.tags?.map((tag, index) => (
                 <span key={index} className="bg-green-100 text-green-800 text-sm font-medium px-2.5 py-0.5 rounded">
                   {tag}
                 </span>
@@ -102,7 +102,7 @@ export default function BlogPage() {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {posts.map((post, index) => (
+          {(posts || []).map((post, index) => (
             <motion.div
               key={post.id}
               className="bg-content1 rounded-2xl border border-default-200 p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer"
@@ -113,12 +113,12 @@ export default function BlogPage() {
             >
               <h2 className="text-xl font-bold mb-3">{post.title}</h2>
               <div className="flex flex-wrap gap-2 mb-4">
-                {post.categories.map((category, catIndex) => (
+                {(post.categories || []).map((category, catIndex) => (
                   <span key={catIndex} className="bg-blue-100 text-blue-800 text-xs font-medium px-2 py-1 rounded">
                     {category}
                   </span>
                 ))}
-                {post.tags.map((tag, tagIndex) => (
+                {(post.tags || []).map((tag, tagIndex) => (
                   <span key={tagIndex} className="bg-green-100 text-green-800 text-xs font-medium px-2 py-1 rounded">
                     {tag}
                   </span>
@@ -132,7 +132,7 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {posts.length === 0 && (
+        {(posts || []).length === 0 && (
           <div className="text-center py-12">
             <p className="text-default-500">No blog posts found.</p>
           </div>
