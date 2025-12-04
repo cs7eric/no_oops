@@ -25,6 +25,9 @@ RUN pnpm run build
 
 # --- 第二阶段保持不变 ---
 FROM nginx:stable-alpine as production-stage
+
+RUN rm -rf /usr/share/nginx/html/*
+
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
