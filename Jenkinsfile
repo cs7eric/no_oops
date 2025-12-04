@@ -10,6 +10,11 @@ pipeline {
         APP_PORT = "8088"
     }
 
+    // Add options to handle the Git checkout issue
+    options {
+        disableConcurrentBuilds()
+    }
+
     stages {
         stage('Prepare Environment') {
             steps {
@@ -32,6 +37,10 @@ pipeline {
                     # Use HTTPS instead of Git protocol
                     git config --global url.https://.insteadOf git://
                     
+                    # Additional Git configurations for better reliability
+                    git config --global core.longpaths true
+                    git config --global core.autocrlf false
+                    
                     echo "Git configuration completed"
                 '''
             }
@@ -39,8 +48,38 @@ pipeline {
         
         stage('Checkout') {
             steps {
-                // 拉取 GitHub 代码，分支为 release
-                checkout scmGit(branches: [[name: '*/release']], userRemoteConfigs: [[url: 'https://github.com/cs7eric/no_oops.git']])
+                script {
+                    // Retry mechanism for Git checkout
+                    def retryCount = 3
+                    def success = false
+                    
+                    for (int i = 0; i < retryCount && !success; i++) {
+                        try {
+                            echo "尝试第 ${i + 1} 次拉取代码..."
+                            // 拉取 GitHub 代码，分支为 release
+                            checkout scmGit(
+                                branches: [[name: '*/release']], 
+                                userRemoteConfigs: [[url: 'https://github.com/cs7eric/no_oops.git']],
+                                extensions: [
+                                    [$class: 'CloneOption', shallow: true, timeout: 30],
+                                    [$class: 'CleanBeforeCheckout'],
+                                    [$class: 'RelativeTargetDirectory', relativeTargetDir: '.']
+                                ]
+                            )
+                            success = true
+                        } catch (Exception e) {
+                            echo "第 ${i + 1} 次尝试失败: ${e.getMessage()}"
+                            if (i < retryCount - 1) {
+                                echo "等待 10 秒后重试..."
+                                sleep 10
+                            }
+                        }
+                    }
+                    
+                    if (!success) {
+                        error "Git checkout failed after ${retryCount} attempts"
+                    }
+                }
             }
         }
 
