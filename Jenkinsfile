@@ -3,14 +3,40 @@ pipeline {
 
     environment {
         // 定义镜像名称
-        IMAGE_NAME = "my-react-app"
+        IMAGE_NAME = "no-oops-front"
         // 定义容器名称
-        CONTAINER_NAME = "react-prod-container"
+        CONTAINER_NAME = "no-oops-front"
         // 定义对外端口
         APP_PORT = "8088"
     }
 
     stages {
+        stage('Prepare Environment') {
+            steps {
+                sh '''
+                    #!/bin/bash
+                    
+                    echo "=== Configuring Git for Unstable Network ==="
+                    
+                    # Fix Git SSL/TLS issues
+                    git config --global http.sslverify false
+                    git config --global https.sslverify false
+                    
+                    # Increase buffer size for large transfers
+                    git config --global http.postBuffer 524288000
+                    
+                    # Configure timeouts
+                    git config --global http.lowSpeedLimit 0
+                    git config --global http.lowSpeedTime 999999
+                    
+                    # Use HTTPS instead of Git protocol
+                    git config --global url.https://.insteadOf git://
+                    
+                    echo "Git configuration completed"
+                '''
+            }
+        }
+        
         stage('Checkout') {
             steps {
                 // 拉取 GitHub 代码，分支为 release
