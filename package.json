@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/generateBlogData.js && vite build && vite ",
-    "dev:watch": "concurrently \"node scripts/watchBlogData.js\" \"vite build && vite\"",
-    "build": "node scripts/generateBlogData.js && tsc && vite build ",
+    "dev": "node scripts/generateBlogData.js && vite",
+    "dev:watch": "concurrently \"node scripts/watchBlogData.js\" \"vite\"",
+    "build": "node scripts/generateBlogData.js && tsc && vite build",
     "lint": "eslint -c .eslintrc.json ./src/**/**/*.{ts,tsx} --fix",
     "preview": "vite preview",
     "generate-blog-data": "node scripts/generateBlogData.js",
@@ -67,6 +67,7 @@
     "eslint-plugin-unused-imports": "4.1.4",
     "postcss": "8.4.38",
     "prettier": "3.3.3",
+    "rimraf": "^6.1.2",
     "typescript": "5.6.3",
     "vite": "^5.2.0",
     "vite-tsconfig-paths": "^4.3.2"
