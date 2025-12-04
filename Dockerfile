@@ -19,7 +19,9 @@ RUN pnpm install
 COPY . .
 
 # 3. 清理旧的构建文件并执行构建
-RUN rm -rf dist && pnpm run build
+RUN rm -rf dist
+
+RUN pnpm run build
 
 # --- 第二阶段保持不变 ---
 FROM nginx:stable-alpine as production-stage

@@ -65,19 +65,19 @@ export default function IndexPage() {
           className="avatar"
           variants={item}
         >
-          <div className="flex justify-center">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              disablePictureInPicture
-              style={{width: '50%', height: '50%', objectFit: 'contain'}}
-            >
-              <source src="/aniemoji.mp4" type="video/mp4"/>
-              您的浏览器不支持HTML5视频
-            </video>
-          </div>
+          {/*<div className="flex justify-center">*/}
+          {/*  <video*/}
+          {/*    autoPlay*/}
+          {/*    muted*/}
+          {/*    loop*/}
+          {/*    playsInline*/}
+          {/*    disablePictureInPicture*/}
+          {/*    style={{width: '50%', height: '50%', objectFit: 'contain'}}*/}
+          {/*  >*/}
+          {/*    <source src="/aniemoji.mp4" type="video/mp4"/>*/}
+          {/*    您的浏览器不支持HTML5视频*/}
+          {/*  </video>*/}
+          {/*</div>*/}
         </motion.div>
         <motion.div
           className="flex gap-3"
