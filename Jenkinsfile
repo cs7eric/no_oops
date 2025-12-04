@@ -83,13 +83,35 @@ pipeline {
             }
         }
 
+        stage('Show Source Files') {
+            steps {
+                sh '''
+                    echo "=== Showing current directory structure ==="
+                    pwd
+                    ls -la
+                    
+                    echo "=== Showing package.json ==="
+                    cat package.json
+                    
+                    echo "=== Showing build script ==="
+                    grep "build" package.json
+                '''
+            }
+        }
+
         stage('Build Docker Image') {
             steps {
                 script {
                     echo '正在构建 Docker 镜像...'
                     // 使用 Build 号作为 Tag，方便回滚
+                    sh "echo '=== Building Docker image with BUILD_NUMBER: ${BUILD_NUMBER} ==='"
                     sh "docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} ."
+                    sh "echo '=== Building Docker image with latest tag ==='"
                     sh "docker build -t ${IMAGE_NAME}:latest ."
+                    
+                    // 检查镜像是否创建成功
+                    sh "echo '=== Checking created images ==='"
+                    sh "docker images | grep ${IMAGE_NAME}"
                 }
             }
         }
@@ -98,17 +120,38 @@ pipeline {
             steps {
                 script {
                     echo '正在部署...'
+                    
+                    // 检查当前运行的容器
+                    sh "echo '=== Checking currently running containers ==='"
+                    sh "docker ps | grep ${CONTAINER_NAME} || echo 'No running containers with name ${CONTAINER_NAME}'"
+                    
+                    // 检查端口占用情况
+                    sh "echo '=== Checking port ${APP_PORT} usage ==='"
+                    sh "lsof -i :${APP_PORT} | grep LISTEN || echo 'No process listening on port ${APP_PORT}'"
+                    
                     // 1. 杀掉占用端口的进程
                     sh "lsof -i :${APP_PORT} | grep LISTEN | awk '{print \$2}' | xargs kill -9 || true"
                     
                     // 2. 停止旧容器 (如果存在)
-                    sh "docker ps -q --filter name=${CONTAINER_NAME} | xargs -r docker stop"
+                    sh "echo '=== Stopping old container ==='"
+                    sh "docker ps -q --filter name=${CONTAINER_NAME} | xargs -r docker stop || echo 'No container to stop'"
                     
                     // 3. 删除旧容器 (如果存在)
-                    sh "docker ps -aq --filter name=${CONTAINER_NAME} | xargs -r docker rm"
+                    sh "echo '=== Removing old container ==='"
+                    sh "docker ps -aq --filter name=${CONTAINER_NAME} | xargs -r docker rm || echo 'No container to remove'"
                     
                     // 4. 运行新容器
+                    sh "echo '=== Running new container ==='"
                     sh "docker run -d -u root -p ${APP_PORT}:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}:latest"
+                    
+                    // 5. 检查容器是否运行成功
+                    sh "echo '=== Checking container status ==='"
+                    sh "sleep 5"
+                    sh "docker ps | grep ${CONTAINER_NAME}"
+                    
+                    // 6. 检查容器日志
+                    sh "echo '=== Checking container logs ==='"
+                    sh "docker logs ${CONTAINER_NAME} || echo 'Failed to get container logs'"
                 }
             }
         }
@@ -121,9 +164,14 @@ pipeline {
         }
         success {
             echo '构建并部署成功！'
+            sh "echo '=== Final verification ==='"
+            sh "curl -I http://localhost:${APP_PORT} || echo 'Failed to connect to deployed application'"
         }
         failure {
             echo '构建失败，请检查日志。'
+            sh "echo '=== Debugging information on failure ==='"
+            sh "docker ps -a | grep ${CONTAINER_NAME} || echo 'No container found'"
+            sh "docker images | grep ${IMAGE_NAME} || echo 'No image found'"
         }
     }
 }
