@@ -1,1 +1,0 @@
-import{k as e}from"./index-B1JyohVl.js";import{t}from"./primitives-DZzKjk_I.js";function n(){return e.jsx("section",{className:"flex flex-col items-center justify-center gap-4 py-8 md:py-10",children:e.jsx("div",{className:"inline-block max-w-lg text-center justify-center",children:e.jsx("h1",{className:t(),children:"Reading"})})})}export{n as default};
