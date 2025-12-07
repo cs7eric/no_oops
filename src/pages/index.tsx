@@ -6,9 +6,12 @@ import {button as buttonStyles} from "@heroui/theme";
 
 import {IoCodeSlashOutline} from "react-icons/io5";
 import {GithubIcon} from "@/components/icons";
+import { FaTwitter, FaLinkedin, FaStackOverflow, FaYoutube, FaInstagram } from "react-icons/fa";
 
 import BlurText from "@/components/text/blur-text.tsx";
 import { useTranslation } from "@/hooks/useTranslation";
+import LogoLoopView from "@/components/logo/logo-loop";
+
 
 // 动画配置
 const container = {
@@ -121,30 +124,11 @@ export default function IndexPage() {
 
 
         <motion.div
-          className={'apps'}
+          className={'apps max-w-3xl'}
           variants={item}
-        >
-          <div className="backend grid grid-cols-5 gap-3 sm:gap-6 place-items-center [&>*]:size-8 md:[&>*]:size-10">
-            <div className="rounded-full">
-              <img src="/icons/GitHub.png" className={'dark:invert '} alt=""/>
-            </div>
-            <div className="rounded-full">
-              <img src="/icons/mail4.png" className={'dark:invert '} alt=""/>
-
-            </div>
-            <div className="rounded-full">
-              <img src="/icons/csdn.png" alt=""/>
-            </div>
-            <div className="rounded-full">
-              <img src="/icons/blog.png" alt=""/>
-            </div>
-            <div className="rounded-full">
-              <img src="/icons/GitHub.png" className={'dark:invert '} alt=""/>
-            </div>
-
-          </div>
-
-        </motion.div>
+        > 
+          <LogoLoopView />
+        </motion.div> 
 
 
 

@@ -1,4 +1,7 @@
 import { title } from "@/components/primitives";
+import { SiReact, SiNextdotjs, SiTypescript, SiTailwindcss } from 'react-icons/si';
+import LogoLoopView from "@/components/logo/logo-loop";
+
 import { useEffect, useState } from "react";
 import { requestService } from "@/utils/request";
 import { useTranslation } from "@/hooks/useTranslation";
@@ -10,6 +13,7 @@ interface AIModel {
   description: string;
   createdAt: string;
 }
+
 
 export default function AIPage() {
   const [models, setModels] = useState<AIModel[]>([]);
@@ -62,6 +66,8 @@ export default function AIPage() {
         <p className="mt-4 text-default-600">
           {t('ai.description')}
         </p>
+
+        <LogoLoopView />
         
         <div className="mt-8">
           <h2 className="text-xl font-bold mb-4">AI Models</h2>
