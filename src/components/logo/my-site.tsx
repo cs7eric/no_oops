@@ -11,10 +11,13 @@ const techLogos = [
   { node: <FaTelegram />, title: "Telegram", href: "https://telegram.com" },
 ];
 
+interface MySiteProps {
+  className?: string;
+}
 
-const MySite = () => {
+const MySite: React.FC<MySiteProps> = ({ className = "" }) => {
   return (
-    <div className="flex items-center justify-center" style={{ height: '80px', width: '300px', position: 'relative', overflow: 'hidden'}}>
+    <div className={`flex items-center justify-center ${className}`} style={{ height: '80px', width: '300px', position: 'relative', overflow: 'hidden'}}>
       <LogoLoop
         logos={techLogos}
         speed={60}
