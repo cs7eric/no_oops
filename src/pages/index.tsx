@@ -11,6 +11,7 @@ import { FaTwitter, FaLinkedin, FaStackOverflow, FaYoutube, FaInstagram } from "
 import BlurText from "@/components/text/blur-text.tsx";
 import { useTranslation } from "@/hooks/useTranslation";
 import LogoLoopView from "@/components/logo/logo-loop";
+import MySite from "@/components/logo/my-site";
 
 
 // 动画配置
@@ -108,6 +109,14 @@ export default function IndexPage() {
           </Link>
         </motion.div>
 
+
+        <motion.div
+          className={'sites max-w-3xl'}
+          variants={item}
+        > 
+          <MySite className="flex items-center justify-center"/>
+        </motion.div> 
+
         <motion.div
           className="intro flex flex-col items-center space-y-7 mb-10"
           variants={item}
@@ -130,6 +139,8 @@ export default function IndexPage() {
           <LogoLoopView />
         </motion.div> 
 
+  
+
 
 
         <motion.div
@@ -141,7 +152,7 @@ export default function IndexPage() {
               <h3 className={'title font-bold text-xl md:text-3xl text-center sm:text-left'}>
                 {t('about.title')}
               </h3>
-              <p>Hello, I'm cccs7/cs7eric and my Chinese name is Chen, Shuaiqi. <br/>
+              <p>Hello, I'm cccs7/cs7eric and my Chinese name is Shuaiqi Chen. <br/>
                 I'm a <strong>Java Developer</strong>,
                 and<strong> Full-Stack Engineers </strong> based in Hangzhou, China.</p>
               <p>As a technologies enthusiast, I am highly passionate about building full-stack web applications.

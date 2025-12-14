@@ -31,6 +31,10 @@ export const siteConfig = {
     {
       label: "AI",
       href: "/ai",
+    },
+    {
+      label: "Workplace",
+      href: "/workplace",
     }
   ],
   navMenuItems: [
@@ -53,6 +57,10 @@ export const siteConfig = {
     {
       label: "Resume",
       href: "/resume",
+    },
+    {
+      label: "Workplace",
+      href: "/workplace",
     },
     {
       label: "About",

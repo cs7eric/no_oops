@@ -12,6 +12,7 @@ const BlogPage = React.lazy(() => import("@/pages/blog"));
 const AboutPage = React.lazy(() => import("@/pages/about"));
 const ReadingPage = React.lazy(() => import("@/pages/reading"));
 const AIPage = React.lazy(() => import("@/pages/ai"));
+const WorkplacePage = React.lazy(() => import("@/pages/workplace"));
 
 const withSuspense = (
   Comp: React.LazyExoticComponent<React.ComponentType<any>>
@@ -45,6 +46,7 @@ export const routes: RouteObject[] = [
       { path: "reading", element: withSuspense(ReadingPage) },
       { path: "about", element: withSuspense(AboutPage) },
       { path: "ai", element: withSuspense(AIPage) },
+      { path: "workplace", element: withSuspense(WorkplacePage) },
       { path: "*", element: <div className="py-10 text-center text-default-500">404 - Page Not Found</div> }
     ]
   }
